@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/influxdb-java-2.1.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/guava-19.0.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/retrofit-1.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/okhttp-3.4.1.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/influxdb-2.5.1.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/gson-2.6.2 (1).jar"/>
+	<classpathentry kind="lib" path="/Users/valentinoauretino/Desktop/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
