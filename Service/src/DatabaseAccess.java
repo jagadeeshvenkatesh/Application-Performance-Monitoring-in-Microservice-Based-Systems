@@ -15,41 +15,12 @@ import com.mysql.jdbc.Statement;
  *
  */
 public class DatabaseAccess {
-	private Connection mysqlConnection = null;
-	private Statement mysqlStatement = null;
-	private PreparedStatement preparedStatement = null;
-	private ResultSet resultSet = null;
 	private static String INFlUXDBADRESSE = "localhost";
 	private static String INFlUXDBPORT = "8086";
 	private static String INFlUXDBUSER = "root";
 	private static String INFlUXDBPW = "root";
 	private static String INFlUXDB = "root";
 
-	/**
-	 * Write component data into MySQL
-	 * 
-	 * @throws Exception
-	 */
-	public void writeIntoMySqlDB() throws Exception {
-		try {
-			// This will load the MySQL driver, each DB has its own driver
-			Class.forName("com.mysql.jdbc.Driver");
-			// Setup the connection with the DB
-			mysqlConnection = (Connection) DriverManager
-					.getConnection("jdbc:mysql://localhost/environmentData?" + "user=root&password=root");
-
-			// Statements allow to issue SQL queries to the database
-			mysqlStatement = (Statement) mysqlConnection.createStatement();
-
-			mysqlStatement.executeUpdate("insert into comments values (default,'test')");
-
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			mysqlConnection.close();
-		}
-
-	}
 	
 	/**
 	 * Write data points into InfluxDB
@@ -63,7 +34,7 @@ public class DatabaseAccess {
 	 */
 	public void writeDataPointIntoInfluxDB(String tablename, String componentType, String snapshotID, String metricType,
 			double metricValue) throws Exception {
-		Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
+		Configuration configuration = new Configuration("localhost", "8086", "root", "root", "microserviceMonitoringDB");
 		DataWriter writer = new DataWriter(configuration);
 		writer.setMeasurement(tablename);
 
@@ -77,7 +48,7 @@ public class DatabaseAccess {
 	}
 	
 	public void writeDataSeriesIntoInfluxDB(String tablename, Map<String, String> dataMap) throws Exception {
-		Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
+		Configuration configuration = new Configuration("localhost", "8086", "root", "root", "microserviceMonitoringDB");
 		DataWriter writer = new DataWriter(configuration);
 		writer.setMeasurement(tablename);
 

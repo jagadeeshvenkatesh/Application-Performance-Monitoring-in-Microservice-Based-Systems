@@ -30,73 +30,14 @@ import com.google.gson.JsonParser;
 
 public class Metrics {
 
-	 static DatabaseAccess dao = new DatabaseAccess();
-	public static void main(String[] args) throws Exception {
-
-		ArrayList<String> hostlist = new ArrayList<>();
-//      	hostlist.add("R6x_nuhhLZq1wrr9X7aVH1N0nCs");
-		hostlist.add("N0n3QwIlX358zNC_Xp8QKW0NSnY");
-
-		ArrayList<String> containerlist2 = new ArrayList<>();
-		containerlist2.add("GfVYqknxuiLBWvCgihkltUKoPgU");
-		containerlist2.add("rx3xhns6KKaQax1ghrjHje9_j6k");
-		containerlist2.add("7uHhWaExHla_-v2wFtzkS5CT-TA");
-		
-		ArrayList<String> servicelist = new ArrayList<>();
-		servicelist.add("b9xeCfs_8x6YIqZ06Rv3bzxpOHA");
-		servicelist.add("sHN0tA3GC3NXC926h3oNBxq8ROA");
-	
-	
-		
-		ArrayList<String> containerlist1 = new ArrayList<>();
-		containerlist1.add("X3zF6QXImBlWIufTyR9MlKpqXrQ");
-		containerlist1.add("nf7fy9kn632CgwBmIQY13IqGSLE");
-		containerlist1.add("KXxcRow3mOUOjHbzO1l4IFI3Zq8");
-		containerlist1.add("ZKdcVJ6Io9m8bykScofxAJCb9hQ");
-		containerlist1.add("Q-NcFqVUxATUkWmsveCvfKaeYmQ");
-		containerlist1.add("2P_tVjHNDCc9QSgpsMtLt2k1MOc");
-		containerlist1.add("AKSOnsz8ZwBxVfZBAQZrVZOXGMU");
-		containerlist1.add("fUnzjvWoVnrwxMhVrhDog_n1ifk");
-	
-		
-		
-		
-	
-
-//		while (true) {	
-//			try {
-//			getCPU_Used_Metrics(hostlist);
-//			getMemory_Used_Metrics(hostlist);
-//			getLoad_Metrics(hostlist);
-//			getContainer_CPU_Metrics(containerlist1);
-//			getContainer_Memory_Metrics(containerlist1);
-//			getContainer_IO_Metrics(containerlist1);
-//			getContainer_CPU_Metrics(containerlist2);
-//			getContainer_Memory_Metrics(containerlist2);
-//			getContainer_IO_Metrics(containerlist2);
-//			getService_AvgLatency(servicelist);
-//			getService_Calls(servicelist);
-//			getService_error_rate(servicelist);
-//			getService_Instances(servicelist);
-//				getComponentInformantion("ujAP46NqxH64mzMVmlVkB0gHNd0");
-//			}catch(Exception exc) {
-//				
-//			}	
-//			parseEventInformation("[{\"eventId\":\"LcNQpHlcR2ig68n_yDAwRQ\",\"start\":1511125875000,\"end\":1511125971271,\"problem\":\"online\",\"fixSuggestion\":\"Web Service Instance\",\"severity\":-1,\"snapshotId\":\"KL6YyjA0wn_I9l3TOM8BYiuh9Bk\"},"
-//					+ "{\"eventId\":\"nuH2msDtTQWgN1cYebtbvQ\",\"start\":1511125930000,\"end\":1511126031271,\"problem\":\"offline\",\"fixSuggestion\":\"Web Service Instance\",\"severity\":5,\"snapshotId\":\"JkbM79nIPQn1zWIayr-MpKL2Lcg\"}]");
-			
-//		}
-		
-			getTraceData();
-	}
-		
+	 static DatabaseAccess dao = new DatabaseAccess();	
 	
 
 	/**
 	 * @throws Exception
 	 * 
 	 */
-	public static void getCPU_Used_Metrics(ArrayList<String> hostlist) throws Exception {
+	public void getCPU_Used_Metrics(ArrayList<String> hostlist) throws Exception {
 
 		for (String host : hostlist) {
 
@@ -125,23 +66,12 @@ public class Metrics {
 			JSONObject jsonObject = (JSONObject) object;
 
 			double value = (double) jsonObject.get("value");
-
-			// Connect to InfluxDB
-			Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
-			DataWriter writer = new DataWriter(configuration);
-
-			// create table and add field
-			writer.setMeasurement("host_metrics_" + host);
-			writer.setTimeUnit(TimeUnit.MILLISECONDS);
-			writer.addField("cpu_used", value);
-
-			// Write into InfluxDB
-			writer.setTime(System.currentTimeMillis());
-			writer.writeData();
-		}
+			
+			dao.writeDataPointIntoInfluxDB("host_metrics", "host",host,"cpu_used",value);
+		}		
 	}
 
-	public static void getMemory_Used_Metrics(ArrayList<String> hostlist) throws Exception {
+	public  void getMemory_Used_Metrics(ArrayList<String> hostlist) throws Exception {
 
 		for (String host : hostlist) {
 			// Define Instana Rest URL and establish a connection
@@ -169,19 +99,12 @@ public class Metrics {
 
 			double value = (double) jsonObject.get("value");
 
-			Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
-			DataWriter writer = new DataWriter(configuration);
-			writer.setMeasurement("host_metrics_" + host);
-			// Default is in seconds
-			writer.setTimeUnit(TimeUnit.MILLISECONDS);
-			writer.addField("memory_used", value);
-
-			writer.setTime(System.currentTimeMillis());
-			writer.writeData();
+			dao.writeDataPointIntoInfluxDB("host_metrics", "host",host,"memory_used",value);
+			
 		}
 	}
 
-	public static void getLoad_Metrics(ArrayList<String> hostlist) throws Exception {
+	public void getLoad_Metrics(ArrayList<String> hostlist) throws Exception {
 
 		for (String host : hostlist) {
 			// Define Instana Rest URL and establish a connection
@@ -222,31 +145,8 @@ public class Metrics {
 
 	}
 
-	public static void getComponentInformantion(String component) throws IOException {
-
-		// Define Instana Rest URL and establish a connection
-		URL url = new URL(
-				"https://audi-audi.instana.io/api/snapshots/" + component + "?time=" + getTime());
-
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-		// Add authorization with API token to request header
-		connection.setRequestMethod("GET");
-		connection.setRequestProperty("authorization", "apiToken XGWkxMrdgr00Tc2s");
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
-		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
-
-		System.out.println(response.toString());
-
-	}
-
-	public static void getContainer_CPU_Metrics(ArrayList<String> containerlist) throws Exception {
+	
+	public void getContainer_CPU_Metrics(ArrayList<String> containerlist) throws Exception {
 
 		for (String container : containerlist) {
 
@@ -273,7 +173,7 @@ public class Metrics {
 
 	}
 
-	public static void getContainer_Memory_Metrics(ArrayList<String> containerlist) throws Exception {
+	public void getContainer_Memory_Metrics(ArrayList<String> containerlist) throws Exception {
 
 		for (String container : containerlist) {
 			// Define Instana Rest URL and establish a connection
@@ -300,7 +200,7 @@ public class Metrics {
 
 	}
 
-	public static void getContainer_IO_Metrics(ArrayList<String> containerlist) throws Exception {
+	public void getContainer_IO_Metrics(ArrayList<String> containerlist) throws Exception {
 
 		for (String container : containerlist) {
 
@@ -329,7 +229,7 @@ public class Metrics {
 		}
 	}
 
-	public static String sendRequest(String request) throws IOException {
+	public  String sendRequest(String request) throws IOException {
 
 		// Define Instana Rest URL and establish a connection
 		URL url = new URL(request);
@@ -350,7 +250,7 @@ public class Metrics {
 		return response.toString();
 	}
 	
-	public static void getService_Calls(ArrayList<String> servicelist) throws Exception {
+	public void getService_Calls(ArrayList<String> servicelist) throws Exception {
 
 		for (String service : servicelist) {
 			
@@ -367,7 +267,7 @@ public class Metrics {
 		}
 	}
 	
-	public static void getService_AvgLatency(ArrayList<String> servicelist) throws Exception {
+	public void getService_AvgLatency(ArrayList<String> servicelist) throws Exception {
 
 		for (String service : servicelist) {
 			
@@ -384,7 +284,7 @@ public class Metrics {
 		}
 	}
 	
-	public static void getService_error_rate(ArrayList<String> servicelist) throws Exception {
+	public void getService_error_rate(ArrayList<String> servicelist) throws Exception {
 
 		for (String service : servicelist) {
 			// Parse JSON response (Write metric)
@@ -405,7 +305,7 @@ public class Metrics {
 	}
 	
 	
-	public static void getService_Instances(ArrayList<String> servicelist) throws Exception {
+	public void getService_Instances(ArrayList<String> servicelist) throws Exception {
 
 		for (String service : servicelist) {			
 
@@ -422,7 +322,7 @@ public class Metrics {
 		}
 	}
 	
-	public static void getEvents() throws Exception {
+	public void getEvents() throws Exception {
 
 		// Define Instana Rest URL and establish a connection
 		URL url = new URL(
@@ -446,7 +346,7 @@ public class Metrics {
 
 	}
 	
-	public static void getTraceData() throws Exception {
+	public void getTraceData() throws Exception {
 		// Define Instana Rest URL and establish a connection
 				URL url = new URL(
 						"https://audi-audi.instana.io/api/traces/-1827782056356300223");
@@ -491,7 +391,7 @@ public class Metrics {
 				System.out.println(trace.toString());
 				System.out.println(traceDuration);
 	}
-	public static void getTraces() throws Exception {
+	public void getTraces() throws Exception {
 		// Define Instana Rest URL and establish a connection
 				URL url = new URL(
 						"https://audi-audi.instana.io/api/traces?windowsize={1948194165805255939&to="+getTime()+"&sortBy=duration&sortMode=\"\"&query=\"\"");
@@ -513,7 +413,7 @@ public class Metrics {
 				System.out.println(response.toString());
 	}
 	
-	public static void getEventInformation(String eventId) throws Exception {
+	public void getEventInformation(String eventId) throws Exception {
 
 		// Define Instana Rest URL and establish a connection
 		URL url = new URL(
@@ -537,7 +437,7 @@ public class Metrics {
 
 	}
 	
-	public static void parseEventInformation(String events) throws Exception {
+	public void parseEventInformation(String events) throws Exception {
 
 //		// Define Instana Rest URL and establish a connection
 //		URL url = new URL("https://audi-audi.instana.io/api/events/?windowsize=1000000&to=" + getTime());
@@ -604,7 +504,7 @@ public class Metrics {
 		
 	}
 
-	public static void writeIntoDatabase(String tablename, String componentType, String snapshotID, String metricType, double metricValue) throws Exception {
+	public void writeIntoDatabase(String tablename, String componentType, String snapshotID, String metricType, double metricValue) throws Exception {
 
 		Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
 		DataWriter writer = new DataWriter(configuration);
@@ -626,7 +526,7 @@ public class Metrics {
 	}
 	
 	
-	public static void sendDashboard(String dashboard) throws IOException {
+	public void sendDashboard(String dashboard) throws IOException {
 		URL obj = new URL("http://localhost:3000/api/dashboards/db");
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
