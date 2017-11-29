@@ -1,0 +1,6147 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_MICROSERVICEMETRICSDB",
+      "label": "MicroserviceMetricsDB",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "4.4.1"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "jdbranham-diagram-panel",
+      "name": "Diagram",
+      "version": "1.4.0"
+    }
+  ],
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "rows": [
+    {
+      "collapse": true,
+      "height": 191,
+      "panels": [
+        {
+          "colors": [],
+          "content": "graph LR;\n host1((k8s-vs-3.novalocal)) --> unmon1(34.248.76.180);\n\n host1((k8s-vs-3.novalocal)) --> unmon2(52.209.139.108 - ec2-52-209-139-108.eu-west-1.compute.amazonaws.com);\n\n host1((k8s-vs-3.novalocal)) --> unmon3(172.16.100.4);\n host1((k8s-vs-3.novalocal)) --> unmon4(10.0.13.143); \n\n host2((k8s-vs-2.novalocal)) --> unmon4(10.0.13.143);\n\n host2((k8s-vs-2.novalocal)) --> unmon5(172.16.78.7);\n\n host2((k8s-vs-2.novalocal)) --> unmon6(172.16.78.8);\n\n host2((k8s-vs-2.novalocal)) --> unmon2(52.209.139.108 - ec2-52-209-139-108.eu-west-1.compute.amazonaws.com);\n",
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "format": "percentunit",
+          "graphId": "diagram_3",
+          "id": 3,
+          "init": {
+            "arrowMarkerAbsolute": true,
+            "cloneCssStyles": false,
+            "flowchart": {
+              "htmlLabels": true,
+              "useMaxWidth": true
+            },
+            "gantt": {
+              "barGap": 4,
+              "barHeight": 20,
+              "fontFamily": "\"Open-Sans\", \"sans-serif\"",
+              "fontSize": 11,
+              "gridLineStartPadding": 35,
+              "leftPadding": 75,
+              "numberSectionStyles": 3,
+              "titleTopMargin": 25,
+              "topPadding": 50
+            },
+            "logLevel": 3,
+            "sequenceDiagram": {
+              "actorMargin": 50,
+              "bottomMarginAdj": 1,
+              "boxMargin": 10,
+              "boxTextMargin": 5,
+              "diagramMarginX": 50,
+              "diagramMarginY": 10,
+              "height": 65,
+              "messageMargin": 35,
+              "mirrorActors": true,
+              "noteMargin": 10,
+              "useMaxWidth": true,
+              "width": 150
+            },
+            "startOnLoad": false
+          },
+          "legend": {
+            "avg": false,
+            "current": true,
+            "gradient": {
+              "enabled": false,
+              "show": true
+            },
+            "max": false,
+            "min": false,
+            "show": false,
+            "total": false
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "maxWidth": false,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 12,
+          "targets": [],
+          "thresholds": "",
+          "title": "Host View",
+          "transparent": true,
+          "type": "jdbranham-diagram-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current",
+          "valueOptions": [
+            "avg",
+            "min",
+            "max",
+            "total",
+            "current"
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Host View",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 878,
+      "panels": [
+        {
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "content": "graph LR;  \n \nhost1((k8s-vs-2.novalocal)) --> process1(docker, label:kibana kube-system/kibana-1021951394-ksc2f); \nhost1((k8s-vs-2.novalocal)) --> process2(redis, label:redis 6379); \nhost1((k8s-vs-2.novalocal)) --> process3(docker, label:fluentd kube-system/fluentd-d94ff); \nhost1((k8s-vs-2.novalocal)) --> process4(rabbitMq, label:RabbitMQ); \nhost1((k8s-vs-2.novalocal)) --> process5(springbootApplicationContainer, label:shipping 1.4.0.RELEASE); \nhost1((k8s-vs-2.novalocal)) --> process6(docker, label:fluentd-es kube-system/fluentd-es-v1.20-j9qc7); \n",
+          "format": "none",
+          "graphId": "diagram_10",
+          "id": 10,
+          "init": {
+            "arrowMarkerAbsolute": true,
+            "cloneCssStyles": false,
+            "flowchart": {
+              "htmlLabels": true,
+              "useMaxWidth": true
+            },
+            "gantt": {
+              "barGap": 4,
+              "barHeight": 20,
+              "fontFamily": "\"Open-Sans\", \"sans-serif\"",
+              "fontSize": 11,
+              "gridLineStartPadding": 35,
+              "leftPadding": 75,
+              "numberSectionStyles": 3,
+              "titleTopMargin": 25,
+              "topPadding": 50
+            },
+            "logLevel": 3,
+            "sequenceDiagram": {
+              "actorMargin": 50,
+              "bottomMarginAdj": 1,
+              "boxMargin": 10,
+              "boxTextMargin": 5,
+              "diagramMarginX": 50,
+              "diagramMarginY": 10,
+              "height": 65,
+              "messageMargin": 35,
+              "mirrorActors": true,
+              "noteMargin": 10,
+              "useMaxWidth": true,
+              "width": 150
+            },
+            "startOnLoad": false
+          },
+          "legend": {
+            "avg": true,
+            "current": true,
+            "gradient": {
+              "enabled": true,
+              "show": true
+            },
+            "max": true,
+            "min": true,
+            "show": false,
+            "total": true
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "maxWidth": false,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 6,
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "0,10",
+          "title": "k8s-vs-2.novalocal",
+          "transparent": true,
+          "type": "jdbranham-diagram-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg",
+          "valueOptions": [
+            "avg",
+            "min",
+            "max",
+            "total",
+            "current"
+          ]
+        },
+        {
+          "colors": [
+            "rgba(50, 172, 45, 0.97)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(245, 54, 54, 0.9)"
+          ],
+          "content": "graph LR;   \nhost1((k8s-vs-3.novalocal)) --> process1(docker, label:fluentd kube-system/fluentd-1pj7z);\nhost1((k8s-vs-3.novalocal)) --> process2(elasticsearchNode, label:Unknown); \nhost1((k8s-vs-3.novalocal)) --> process3(docker, label:kibana-logging kube-system/kibana-logging-4268865015-rct2m); \nhost1((k8s-vs-3.novalocal)) --> process4(docker, label:eventer kube-system/heapster-v1.2.0-4191584905-lrhp2); \nhost1((k8s-vs-3.novalocal)) --> process5(docker, label:grafana kube-system/monitoring-influxdb-grafana-v3-vphlp); \nhost1((k8s-vs-3.novalocal)) --> process6(docker, label:healthz  kube-system/kube-dns-v20-w0cz1);\nhost1((k8s-vs-3.novalocal)) --> process7(docker, label:fluentd-es kube-system/fluentd-es-v1.20-hqn6s);\nhost1((k8s-vs-3.novalocal)) --> process8(docker, label:eventer-nanny kube-system/heapster-v1.2.0-4191584905-lrhp2);\nhost1((k8s-vs-3.novalocal)) --> process9(docker, label:finfluxdb kube-system/monitoring-influxdb-grafana-v3-vphlp);\nhost1((k8s-vs-3.novalocal)) --> process10(docker, label:locust default/locust-worker-5c6ss);",
+          "format": "none",
+          "graphId": "diagram_11",
+          "id": 11,
+          "init": {
+            "arrowMarkerAbsolute": true,
+            "cloneCssStyles": false,
+            "flowchart": {
+              "htmlLabels": true,
+              "useMaxWidth": true
+            },
+            "gantt": {
+              "barGap": 4,
+              "barHeight": 20,
+              "fontFamily": "\"Open-Sans\", \"sans-serif\"",
+              "fontSize": 11,
+              "gridLineStartPadding": 35,
+              "leftPadding": 75,
+              "numberSectionStyles": 3,
+              "titleTopMargin": 25,
+              "topPadding": 50
+            },
+            "logLevel": 3,
+            "sequenceDiagram": {
+              "actorMargin": 50,
+              "bottomMarginAdj": 1,
+              "boxMargin": 10,
+              "boxTextMargin": 5,
+              "diagramMarginX": 50,
+              "diagramMarginY": 10,
+              "height": 65,
+              "messageMargin": 35,
+              "mirrorActors": true,
+              "noteMargin": 10,
+              "useMaxWidth": true,
+              "width": 150
+            },
+            "startOnLoad": false
+          },
+          "legend": {
+            "avg": true,
+            "current": true,
+            "gradient": {
+              "enabled": true,
+              "show": true
+            },
+            "max": true,
+            "min": true,
+            "show": false,
+            "total": true
+          },
+          "links": [],
+          "mappingType": 1,
+          "maxDataPoints": 100,
+          "maxWidth": false,
+          "nullPointMode": "connected",
+          "seriesOverrides": [],
+          "span": 6,
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "0,10",
+          "title": "k8s-vs-3.novalocal",
+          "transparent": true,
+          "type": "jdbranham-diagram-panel",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "avg",
+          "valueOptions": [
+            "avg",
+            "min",
+            "max",
+            "total",
+            "current"
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Process View",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 278,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 19,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Usage (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 20,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Memory Usage (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 21,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Load (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Host Metrics (k8s-vs-3.novalocal)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 251,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 16,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU usage (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "decimals": 0,
+          "fill": 1,
+          "id": 17,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Memory Usage (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": "",
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 18,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 4,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "CPU Load (mean)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "host_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "load"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Load",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Host Metrics (k8s-vs-2.novalocal)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 265,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 13,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-d9p10)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "XdZftrQ-kMpourirKbeEF0g0Sqw"
+                }
+              ]
+            },
+            {
+              "alias": "heapster (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "73yPaqcB1vgPPcRyV9Mw79KxahU"
+                }
+              ]
+            },
+            {
+              "alias": "kubernetes-dashboard (kube-system/kubernetes-dashboard-3203831700-c32zj)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Y6mCmPxSVaqJ8gRgFAJjQP9uj_4"
+                }
+              ]
+            },
+            {
+              "alias": "MongoDB @27017",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "KXxcRow3mOUOjHbzO1l4IFI3Zq8"
+                }
+              ]
+            },
+            {
+              "alias": "grafana (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ZKdcVJ6Io9m8bykScofxAJCb9hQ"
+                }
+              ]
+            },
+            {
+              "alias": "healthz (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "WjCGPmWc5dw_1yseTCz_q6GFVeo"
+                }
+              ]
+            },
+            {
+              "alias": "dnsmasq (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "VKh6jGHNGYNQYX0zvjuJlCoN3Bo"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-h38p5)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "hec8tzXx4RuZtBEsw8QYE-5NjHk"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-hqn6s)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Q-NcFqVUxATUkWmsveCvfKaeYmQ"
+                }
+              ]
+            },
+            {
+              "alias": "heapster-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "J",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "f7hRvBiR8y92KKU7qKkrU7fgupk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana-logging (kube-system/kibana-logging-4268865015-rct2m)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "K",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "AKSOnsz8ZwBxVfZBAQZrVZOXGMU"
+                }
+              ]
+            },
+            {
+              "alias": "influxdb (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "L",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fUnzjvWoVnrwxMhVrhDog_n1ifk"
+                }
+              ]
+            },
+            {
+              "alias": "eventer-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "M",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "2P_tVjHNDCc9QSgpsMtLt2k1MOc"
+                }
+              ]
+            },
+            {
+              "alias": "kubedns (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "N",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "MwcmkFpGcmfDs4uM6nbZ3P2i8r4"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 23,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-d9p10)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "XdZftrQ-kMpourirKbeEF0g0Sqw"
+                }
+              ]
+            },
+            {
+              "alias": "heapster (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "73yPaqcB1vgPPcRyV9Mw79KxahU"
+                }
+              ]
+            },
+            {
+              "alias": "kubernetes-dashboard (kube-system/kubernetes-dashboard-3203831700-c32zj)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Y6mCmPxSVaqJ8gRgFAJjQP9uj_4"
+                }
+              ]
+            },
+            {
+              "alias": "MongoDB @27017",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "KXxcRow3mOUOjHbzO1l4IFI3Zq8"
+                }
+              ]
+            },
+            {
+              "alias": "grafana (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ZKdcVJ6Io9m8bykScofxAJCb9hQ"
+                }
+              ]
+            },
+            {
+              "alias": "healthz (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "WjCGPmWc5dw_1yseTCz_q6GFVeo"
+                }
+              ]
+            },
+            {
+              "alias": "dnsmasq (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "VKh6jGHNGYNQYX0zvjuJlCoN3Bo"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-h38p5)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "hec8tzXx4RuZtBEsw8QYE-5NjHk"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-hqn6s)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Q-NcFqVUxATUkWmsveCvfKaeYmQ"
+                }
+              ]
+            },
+            {
+              "alias": "heapster-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "J",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "f7hRvBiR8y92KKU7qKkrU7fgupk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana-logging (kube-system/kibana-logging-4268865015-rct2m)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "K",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "AKSOnsz8ZwBxVfZBAQZrVZOXGMU"
+                }
+              ]
+            },
+            {
+              "alias": "influxdb (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "L",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fUnzjvWoVnrwxMhVrhDog_n1ifk"
+                }
+              ]
+            },
+            {
+              "alias": "eventer-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "M",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "2P_tVjHNDCc9QSgpsMtLt2k1MOc"
+                }
+              ]
+            },
+            {
+              "alias": "kubedns (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "N",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "MwcmkFpGcmfDs4uM6nbZ3P2i8r4"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 24,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-d9p10)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "XdZftrQ-kMpourirKbeEF0g0Sqw"
+                }
+              ]
+            },
+            {
+              "alias": "heapster (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "73yPaqcB1vgPPcRyV9Mw79KxahU"
+                }
+              ]
+            },
+            {
+              "alias": "kubernetes-dashboard (kube-system/kubernetes-dashboard-3203831700-c32zj)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Y6mCmPxSVaqJ8gRgFAJjQP9uj_4"
+                }
+              ]
+            },
+            {
+              "alias": "MongoDB @27017",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "KXxcRow3mOUOjHbzO1l4IFI3Zq8"
+                }
+              ]
+            },
+            {
+              "alias": "grafana (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ZKdcVJ6Io9m8bykScofxAJCb9hQ"
+                }
+              ]
+            },
+            {
+              "alias": "healthz (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "WjCGPmWc5dw_1yseTCz_q6GFVeo"
+                }
+              ]
+            },
+            {
+              "alias": "dnsmasq (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "VKh6jGHNGYNQYX0zvjuJlCoN3Bo"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-h38p5)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "hec8tzXx4RuZtBEsw8QYE-5NjHk"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-hqn6s)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Q-NcFqVUxATUkWmsveCvfKaeYmQ"
+                }
+              ]
+            },
+            {
+              "alias": "heapster-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "J",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "f7hRvBiR8y92KKU7qKkrU7fgupk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana-logging (kube-system/kibana-logging-4268865015-rct2m)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "K",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "AKSOnsz8ZwBxVfZBAQZrVZOXGMU"
+                }
+              ]
+            },
+            {
+              "alias": "influxdb (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "L",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fUnzjvWoVnrwxMhVrhDog_n1ifk"
+                }
+              ]
+            },
+            {
+              "alias": "eventer-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "M",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "2P_tVjHNDCc9QSgpsMtLt2k1MOc"
+                }
+              ]
+            },
+            {
+              "alias": "kubedns (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "N",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "MwcmkFpGcmfDs4uM6nbZ3P2i8r4"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IO Activity (Read)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 28,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-d9p10)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "XdZftrQ-kMpourirKbeEF0g0Sqw"
+                }
+              ]
+            },
+            {
+              "alias": "heapster (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "73yPaqcB1vgPPcRyV9Mw79KxahU"
+                }
+              ]
+            },
+            {
+              "alias": "kubernetes-dashboard (kube-system/kubernetes-dashboard-3203831700-c32zj)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Y6mCmPxSVaqJ8gRgFAJjQP9uj_4"
+                }
+              ]
+            },
+            {
+              "alias": "MongoDB @27017",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "KXxcRow3mOUOjHbzO1l4IFI3Zq8"
+                }
+              ]
+            },
+            {
+              "alias": "grafana (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ZKdcVJ6Io9m8bykScofxAJCb9hQ"
+                }
+              ]
+            },
+            {
+              "alias": "healthz (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "WjCGPmWc5dw_1yseTCz_q6GFVeo"
+                }
+              ]
+            },
+            {
+              "alias": "dnsmasq (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "VKh6jGHNGYNQYX0zvjuJlCoN3Bo"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-h38p5)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "hec8tzXx4RuZtBEsw8QYE-5NjHk"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-hqn6s)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "I",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "Q-NcFqVUxATUkWmsveCvfKaeYmQ"
+                }
+              ]
+            },
+            {
+              "alias": "heapster-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "J",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "f7hRvBiR8y92KKU7qKkrU7fgupk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana-logging (kube-system/kibana-logging-4268865015-rct2m)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "K",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "AKSOnsz8ZwBxVfZBAQZrVZOXGMU"
+                }
+              ]
+            },
+            {
+              "alias": "influxdb (kube-system/monitoring-influxdb-grafana-v3-vphlp)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "L",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fUnzjvWoVnrwxMhVrhDog_n1ifk"
+                }
+              ]
+            },
+            {
+              "alias": "eventer-nanny (kube-system/heapster-v1.2.0-4191584905-lrhp2)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "M",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "2P_tVjHNDCc9QSgpsMtLt2k1MOc"
+                }
+              ]
+            },
+            {
+              "alias": "kubedns (kube-system/kube-dns-v20-w0cz1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "N",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "R6x_nuhhLZq1wrr9X7aVH1N0nCs"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "MwcmkFpGcmfDs4uM6nbZ3P2i8r4"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IO Activity (Write)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Container Metrics (k8s-vs-3.novalocal)",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": true,
+      "height": 274,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 12,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-wc7r1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fjvVljmb3WtK1C1HA3oojODIn8I"
+                }
+              ]
+            },
+            {
+              "alias": "user (sock-shop/user-3557251178-k3bhz)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "bwal-kQILsT3lXZjCf7sWVed3NI"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-j9qc7)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "7uHhWaExHla_-v2wFtzkS5CT-TA"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-pjbqr)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "pRfb52KLz9w6foa6hSfY3UoZK3A"
+                }
+              ]
+            },
+            {
+              "alias": "front-end (sock-shop/front-end-1872188412-qtp2n)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "-pe7M16LPFZkCn1l8gUsPh2JabM"
+                }
+              ]
+            },
+            {
+              "alias": "kuard (default/kuard)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "LuHyNPLMtaHGbSa3FwPjfNPoIxg"
+                }
+              ]
+            },
+            {
+              "alias": "catalogue (sock-shop/catalogue-1947418907-ntrqm)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ssRD2JoFViN3DTLLQs18daO0bCk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana (kube-system/kibana-1021951394-67d11)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "cpu_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "coLNMy43ixx0RF92aRFKGTtOQC8"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "CPU Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "1",
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 25,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-wc7r1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fjvVljmb3WtK1C1HA3oojODIn8I"
+                }
+              ]
+            },
+            {
+              "alias": "user (sock-shop/user-3557251178-k3bhz)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "bwal-kQILsT3lXZjCf7sWVed3NI"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-j9qc7)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "7uHhWaExHla_-v2wFtzkS5CT-TA"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-pjbqr)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "pRfb52KLz9w6foa6hSfY3UoZK3A"
+                }
+              ]
+            },
+            {
+              "alias": "front-end (sock-shop/front-end-1872188412-qtp2n)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "-pe7M16LPFZkCn1l8gUsPh2JabM"
+                }
+              ]
+            },
+            {
+              "alias": "kuard (default/kuard)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "LuHyNPLMtaHGbSa3FwPjfNPoIxg"
+                }
+              ]
+            },
+            {
+              "alias": "catalogue (sock-shop/catalogue-1947418907-ntrqm)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ssRD2JoFViN3DTLLQs18daO0bCk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana (kube-system/kibana-1021951394-67d11)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "memory_used"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "coLNMy43ixx0RF92aRFKGTtOQC8"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Memory Usage",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 26,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-wc7r1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fjvVljmb3WtK1C1HA3oojODIn8I"
+                }
+              ]
+            },
+            {
+              "alias": "user (sock-shop/user-3557251178-k3bhz)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "bwal-kQILsT3lXZjCf7sWVed3NI"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-j9qc7)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "7uHhWaExHla_-v2wFtzkS5CT-TA"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-pjbqr)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "pRfb52KLz9w6foa6hSfY3UoZK3A"
+                }
+              ]
+            },
+            {
+              "alias": "front-end (sock-shop/front-end-1872188412-qtp2n)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "-pe7M16LPFZkCn1l8gUsPh2JabM"
+                }
+              ]
+            },
+            {
+              "alias": "kuard (default/kuard)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "LuHyNPLMtaHGbSa3FwPjfNPoIxg"
+                }
+              ]
+            },
+            {
+              "alias": "catalogue (sock-shop/catalogue-1947418907-ntrqm)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ssRD2JoFViN3DTLLQs18daO0bCk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana (kube-system/kibana-1021951394-67d11)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "read"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "coLNMy43ixx0RF92aRFKGTtOQC8"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IO Activity (Read)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_MICROSERVICEMETRICSDB}",
+          "fill": 1,
+          "id": 27,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "span": 6,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "load-test (loadtest/load-test-420866379-wc7r1)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "fjvVljmb3WtK1C1HA3oojODIn8I"
+                }
+              ]
+            },
+            {
+              "alias": "user (sock-shop/user-3557251178-k3bhz)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "bwal-kQILsT3lXZjCf7sWVed3NI"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd-es (kube-system/fluentd-es-v1.20-j9qc7)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "7uHhWaExHla_-v2wFtzkS5CT-TA"
+                }
+              ]
+            },
+            {
+              "alias": "fluentd (kube-system/fluentd-pjbqr)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "D",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "pRfb52KLz9w6foa6hSfY3UoZK3A"
+                }
+              ]
+            },
+            {
+              "alias": "front-end (sock-shop/front-end-1872188412-qtp2n)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "E",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "-pe7M16LPFZkCn1l8gUsPh2JabM"
+                }
+              ]
+            },
+            {
+              "alias": "kuard (default/kuard)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "F",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "LuHyNPLMtaHGbSa3FwPjfNPoIxg"
+                }
+              ]
+            },
+            {
+              "alias": "catalogue (sock-shop/catalogue-1947418907-ntrqm)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "G",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "ssRD2JoFViN3DTLLQs18daO0bCk"
+                }
+              ]
+            },
+            {
+              "alias": "kibana (kube-system/kibana-1021951394-67d11)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5s"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "container_metrics",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "H",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "write"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "last"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "host",
+                  "operator": "=",
+                  "value": "N0n3QwIlX358zNC_Xp8QKW0NSnY"
+                },
+                {
+                  "condition": "AND",
+                  "key": "container",
+                  "operator": "=",
+                  "value": "coLNMy43ixx0RF92aRFKGTtOQC8"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "IO Activity (Write)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "decbytes",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Container Metrics (k8s-vs-2.novalocal)",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Infrastructure Dashboard",
+  "version": 38
+}
