@@ -5,9 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 import com.db.influxdb.Configuration;
 import com.db.influxdb.DataWriter;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
 
 /**
  * Class to create database acess to write into different databases 

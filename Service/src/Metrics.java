@@ -2,20 +2,13 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import org.influxdb.InfluxDB;
-import org.influxdb.InfluxDBFactory;
-import org.influxdb.dto.BatchPoints;
-import org.influxdb.dto.Point;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -31,7 +24,6 @@ import com.google.gson.JsonParser;
 public class Metrics {
 
 	 static DatabaseAccess dao = new DatabaseAccess();	
-	
 
 	/**
 	 * @throws Exception
@@ -131,18 +123,10 @@ public class Metrics {
 			JSONObject jsonObject = (JSONObject) object;
 
 			double value = (double) jsonObject.get("value");
-
-			Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
-			DataWriter writer = new DataWriter(configuration);
-			writer.setMeasurement("host_metrics_" + host);
-			// Default is in seconds
-			writer.setTimeUnit(TimeUnit.MILLISECONDS);
-			writer.addField("load", value);
-
-			writer.setTime(System.currentTimeMillis());
-			writer.writeData();
+			
+			dao.writeDataPointIntoInfluxDB("host_metrics", "host",host,"load",value);
+			
 		}
-
 	}
 
 	
@@ -170,7 +154,6 @@ public class Metrics {
 			writer.setTime(System.currentTimeMillis());
 			writer.writeData();
 		}
-
 	}
 
 	public void getContainer_Memory_Metrics(ArrayList<String> containerlist) throws Exception {
@@ -225,7 +208,6 @@ public class Metrics {
 			double value1 = (double) jsonObject1.get("value");
 
 			writeIntoDatabase("container_metrics_", "container", container, "read", value1);
-
 		}
 	}
 
@@ -270,8 +252,7 @@ public class Metrics {
 	public void getService_AvgLatency(ArrayList<String> servicelist) throws Exception {
 
 		for (String service : servicelist) {
-			
-			
+				
 			JSONParser parser = new JSONParser();
 			Object object = parser
 					.parse(sendRequest("https://audi-audi.instana.io/api/metric?metric=duration.mean&time=" + getTime()
@@ -298,9 +279,7 @@ public class Metrics {
 			
 			System.out.println(value);
 
-			writeIntoDatabase("sevice_metrics", "service", service, "error", value);
-
-			
+			writeIntoDatabase("sevice_metrics", "service", service, "error", value);	
 		}
 	}
 	
@@ -343,7 +322,6 @@ public class Metrics {
 		in.close();
 
 		System.out.println(response.toString());
-
 	}
 	
 	public void getTraceData() throws Exception {
@@ -384,15 +362,14 @@ public class Metrics {
 				 data.put("errors", traceErrors);
 				 
 				
-				 dao.writeDataSeriesIntoInfluxDB("traces", data);
-				 
+				 dao.writeDataSeriesIntoInfluxDB("traces", data); 
 				 
 				System.out.println(traceType);
 				System.out.println(trace.toString());
 				System.out.println(traceDuration);
 	}
 	public void getTraces() throws Exception {
-		// Define Instana Rest URL and establish a connection
+		        // Define Instana Rest URL and establish a connection
 				URL url = new URL(
 						"https://audi-audi.instana.io/api/traces?windowsize={1948194165805255939&to="+getTime()+"&sortBy=duration&sortMode=\"\"&query=\"\"");
 
@@ -434,7 +411,6 @@ public class Metrics {
 		in.close();
 
 		System.out.println(response.toString());
-
 	}
 	
 	public void parseEventInformation(String events) throws Exception {
@@ -469,9 +445,7 @@ public class Metrics {
 			String severity = event.get("severity").toString();
 			String fixSuggestion = event.get("fixSuggestion").toString();
 			fixSuggestion=fixSuggestion.replaceAll(" ", "_");
-			
-		
-		
+					
 			if(severity.equals("-1")) {
 				severity="Change";
 			}else if (severity.equals("5")) {
@@ -496,12 +470,8 @@ public class Metrics {
 			}
 						
 			writer.setTime(System.currentTimeMillis());
-			writer.writeData();
-			
-			
-		}
-
-		
+			writer.writeData();	
+		}	
 	}
 
 	public void writeIntoDatabase(String tablename, String componentType, String snapshotID, String metricType, double metricValue) throws Exception {
@@ -523,25 +493,5 @@ public class Metrics {
 
 		return String.valueOf(System.currentTimeMillis());
 		
-	}
-	
-	
-	public void sendDashboard(String dashboard) throws IOException {
-		URL obj = new URL("http://localhost:3000/api/dashboards/db");
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-		// Add authorization with API token to request header
-		con.setRequestMethod("POST");
-		con.setRequestProperty("Content-Type", "application/json");
-		con.setRequestProperty("Accept", "application/json");
-		con.setRequestProperty("Authorization",
-				"Bearer eyJrIjoiWW8xU0dNNm5uUHQ5QVB5bDhJNmZWN3VFRm9DVzNOTHMiLCJuIjoidGhlc2lzIiwiaWQiOjF9");
-
-		// Send post request
-		con.setDoOutput(true);
-		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-		wr.writeBytes(dashboard);
-		wr.flush();
-		wr.close();
 	}
 }

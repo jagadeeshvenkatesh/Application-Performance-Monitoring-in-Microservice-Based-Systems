@@ -21,6 +21,8 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.codec.language.bm.Rule.RPattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -40,9 +42,8 @@ import com.google.gson.JsonParser;
  */
 public class InfrastructureData {
 
+	private static Logger logger = LoggerFactory.getLogger(InfrastructureData.class);
 	public static String currentTime;
-
-
 
 	/**
 	 * Get current Instana infrastructure view and parse it
@@ -68,8 +69,7 @@ public class InfrastructureData {
 		in.close();
 
 
-		return "{\"tree\":[{\"snapshotId\":\"DtkoJCh7wN2hvRTA--s_T6JnUrA\",\"type\":\"zone\",\"children\":[{\"snapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\",\"type\":\"host\",\"children\":[{\"snapshotId\":\"XdZftrQ-kMpourirKbeEF0g0Sqw\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"-JY6jMbkFzSOpkUN0XoAmNE_ubg\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"Ef-6McGB4o5RB1yv0GrMErjFEwQ\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"KXxcRow3mOUOjHbzO1l4IFI3Zq8\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"ZKdcVJ6Io9m8bykScofxAJCb9hQ\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"WjCGPmWc5dw_1yseTCz_q6GFVeo\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"VKh6jGHNGYNQYX0zvjuJlCoN3Bo\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"73yPaqcB1vgPPcRyV9Mw79KxahU\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"Q-NcFqVUxATUkWmsveCvfKaeYmQ\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"hec8tzXx4RuZtBEsw8QYE-5NjHk\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"aqFh7I67G-8GBM5Xq4w6d9qhaEY\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"f7hRvBiR8y92KKU7qKkrU7fgupk\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"2P_tVjHNDCc9QSgpsMtLt2k1MOc\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"eMFylrfRVeImziVCuwUPENONdFI\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"AKSOnsz8ZwBxVfZBAQZrVZOXGMU\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"fUnzjvWoVnrwxMhVrhDog_n1ifk\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"Y6mCmPxSVaqJ8gRgFAJjQP9uj_4\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"MwcmkFpGcmfDs4uM6nbZ3P2i8r4\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]}],\"incomingConnection\":[],\"outgoingConnection\":[{\"connectedSnapshotId\":\"unmon-host=172.16.100.9\"},{\"connectedSnapshotId\":\"unmon-host=172.16.100.6\"},{\"connectedSnapshotId\":\"unmon-host=52.209.139.108=ec2-52-209-139-108.eu-west-1.compute.amazonaws.com\"},{\"connectedSnapshotId\":\"unmon-host=172.16.100.8\"},{\"connectedSnapshotId\":\"unmon-host=10.0.13.143\"},{\"connectedSnapshotId\":\"unmon-host=172.16.100.4\"}]},{\"snapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\",\"type\":\"host\",\"children\":[{\"snapshotId\":\"bwal-kQILsT3lXZjCf7sWVed3NI\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"bAGVBHTpKrfqZ23to9cMZHRE0iw\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"JmAhA-uA2M5f2Gr27Wb8kdD8OyA\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"Rjns4UrbdgOzXoDjVgggwAtW2ys\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"FREbteASKT-_s09HkHokN8S1_lc\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"pRfb52KLz9w6foa6hSfY3UoZK3A\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"w0uMQLBlwBsC93gTxg-umDea5PA\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"7uHhWaExHla_-v2wFtzkS5CT-TA\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"hirZ5rd94l6zZmyf-qCmTlFOWGc\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"fqPZDy93S6X9l0FVvLi_WpOtRk0\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"-pe7M16LPFZkCn1l8gUsPh2JabM\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"coLNMy43ixx0RF92aRFKGTtOQC8\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"LuHyNPLMtaHGbSa3FwPjfNPoIxg\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"fjvVljmb3WtK1C1HA3oojODIn8I\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"Dubac6jxhPeiiturC1C5dANHwSI\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"ssRD2JoFViN3DTLLQs18daO0bCk\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"EiO8tiWVFkeq9qRYVMiIisgG9Oc\",\"type\":\"process\",\"children\":[],\"incomingConnection\":[],\"outgoingConnection\":[]}],\"incomingConnection\":[],\"outgoingConnection\":[{\"connectedSnapshotId\":\"unmon-host=172.16.78.17\"},{\"connectedSnapshotId\":\"unmon-host=10.0.13.143\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.18\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.4\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.12\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.6\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.11\"},{\"connectedSnapshotId\":\"unmon-host=172.16.78.14\"},{\"connectedSnapshotId\":\"unmon-host=34.248.76.180=ec2-34-248-76-180.eu-west-1.compute.amazonaws.com\"}]}],\"incomingConnection\":[],\"outgoingConnection\":[]},{\"snapshotId\":\"5nXT64z0gY0pShCaT5VQ7wGu-0E\",\"type\":\"zone\",\"children\":[{\"snapshotId\":\"unmon-host=52.209.139.108=ec2-52-209-139-108.eu-west-1.compute.amazonaws.com\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=10.0.13.143\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"},{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.14\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.100.4\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.12\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.11\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.18\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.100.9\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.17\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.100.8\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.100.6\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"R6x_nuhhLZq1wrr9X7aVH1N0nCs\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=34.248.76.180=ec2-34-248-76-180.eu-west-1.compute.amazonaws.com\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.4\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]},{\"snapshotId\":\"unmon-host=172.16.78.6\",\"type\":\"host\",\"children\":[],\"incomingConnection\":[{\"connectedSnapshotId\":\"N0n3QwIlX358zNC_Xp8QKW0NSnY\"}],\"outgoingConnection\":[]}],\"incomingConnection\":[],\"outgoingConnection\":[]}]}";
-
+		return response.toString();
 	}
 
 	public static String getComponentInformation(String componentID) throws IOException {
@@ -91,19 +91,22 @@ public class InfrastructureData {
 		}
 		in.close();
 
-		JsonParser parser = new JsonParser();
-		JsonObject componentData = parser.parse(response.toString()).getAsJsonObject();
+//		JsonParser parser = new JsonParser();
+//		JsonObject componentData = parser.parse(response.toString()).getAsJsonObject();
+//		
+//		String componentType="";
+//		String componentLabel="";
+//		if(!componentData.get("plugin").getAsString().equals("host")) {
+//			componentType = componentData.get("plugin").getAsString();
+//			componentLabel = componentData.get("label").getAsString();
+//			return componentType+", label: "+componentLabel;
+//		}else {
+//			componentLabel = componentData.get("label").getAsString();
+//			return componentLabel;
+//		}
 		
-		String componentType="";
-		String componentLabel="";
-		if(!componentData.get("plugin").getAsString().equals("host")) {
-			componentType = componentData.get("plugin").getAsString();
-			componentLabel = componentData.get("label").getAsString();
-			return componentType+", label: "+componentLabel;
-		}else {
-			componentLabel = componentData.get("label").getAsString();
-			return componentLabel;
-		}
+		return response.toString();
+		
 	}
 
 	public static HashMap<String, HashMap<String, String>> getHostAndProcessesData(String data) {
@@ -208,7 +211,7 @@ public class InfrastructureData {
 	 * @throws Exception
 	 */
 	public void checkForInfrastructureChanges() throws Exception {
-
+		logger.info("Checking for infrastructure changes");
 		boolean changeOccured = false;
 
 		String xmlFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
@@ -309,6 +312,7 @@ public class InfrastructureData {
 		}
 		//check if a change occured and rewrite XML
 		if (changeOccured) {
+			logger.info("Infrastructure change occured");
 			Files.delete(xmlFile.toPath());
 			writeInfrastructureDataIntoXML(xmlFilePath);
 		}
@@ -322,9 +326,14 @@ public class InfrastructureData {
 	 * @throws Exception
 	 */
 	public static void writeInfrastructureDataIntoXML(String XMLfilePath) throws Exception {
+		
+		
 		// Infrastructure data
 		HashMap<String, ArrayList<String>> hostConnections = getHostConnections(getInfrastructureView());
 		HashMap<String, HashMap<String, String>> hostsAndProcesses = getHostAndProcessesData(getInfrastructureView());
+		
+		
+		
 
 		// Create DOM
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

@@ -18,6 +18,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -37,6 +39,7 @@ import com.google.gson.JsonParser;
  */
 public class ApplicationData {
 
+	private static Logger logger = LoggerFactory.getLogger(ApplicationData.class);
 	public static String currentTime;
 
 	/**
@@ -90,45 +93,46 @@ public class ApplicationData {
 		String serviceType = service.get("plugin").getAsString();
 		JsonObject serviceData = service.getAsJsonObject("data");
 
+		System.out.println(componentID);
 		String serviceName = serviceData.get("service_name").getAsString();
 		return serviceName + " " + serviceType;
 	}
 
 	public static HashMap<String, ArrayList<String>> getServices(String data) {
-		
+
 		HashMap<String, ArrayList<String>> serviceData = new HashMap<>();
-		
+
 		JsonParser parser = new JsonParser();
 		JsonObject applicationView = parser.parse(data.toString()).getAsJsonObject();
 		JsonArray services = applicationView.get("tree").getAsJsonArray();
-		
-		for(JsonElement serviceElement : services) {
+
+		for (JsonElement serviceElement : services) {
 			ArrayList<String> instances = new ArrayList<>();
 			JsonObject service = serviceElement.getAsJsonObject();
 			String serviceSnapshotId = service.get("snapshotId").getAsString();
 			JsonArray instancesOfService = service.get("children").getAsJsonArray();
-//			
-//			for(JsonElement instanceElement : instancesOfService) {
-//				JsonObject instance = instanceElement.getAsJsonObject();
-//				instancesOfService.add(instance.get("snapshotId"));
-//			}
-			
+			for (int i = 0; i < instancesOfService.size(); i++) {
+				JsonObject ob = instancesOfService.get(i).getAsJsonObject();
+				String e = ob.get("snapshotId").getAsString();
+				instances.add(e);
+
+			}
+
 			serviceData.put(serviceSnapshotId, instances);
 		}
-		
+
 		return serviceData;
 	}
-		
-		
+
 	/**
 	 * write current application data into the XML file by using the DOM API
+	 * 
 	 * @param XMLfilePath
 	 * @throws Exception
 	 */
-	public static void writeApplicationDataIntoXML(String XMLfilePath) throws Exception {
-		
-		HashMap<String, ArrayList<String>> serviceData = getServices(getApplicationView());
+	public static void writeApplicationDataIntoXML(String XMLfilePath, HashMap<String, ArrayList<String>> serviceData) {
 
+		try {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 		Document doc = docBuilder.parse(XMLfilePath);
@@ -142,34 +146,113 @@ public class ApplicationData {
 			Element services = doc.createElement("services");
 			applicationData.appendChild(services);
 		}
-		
-		if(microserviceEnvironmentData.getElementsByTagName("host").getLength() != 0) {
-			System.out.println("blub");
-		}
-		
-		
-		
-//		for(Map.Entry<String, ArrayList<String>> serviceEntry : serviceData.entrySet()) {
-//			
-//		}
-//
-//		// write the content into xml file
-//		TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//		Transformer transformer = transformerFactory.newTransformer();
-//		DOMSource source = new DOMSource(doc);
-//		StreamResult result = new StreamResult(new File(XMLfilePath));
-//		transformer.transform(source, result);
 
+		if (microserviceEnvironmentData.getElementsByTagName("service").getLength() != 0) {
+			Node servicesNode = microserviceEnvironmentData.getElementsByTagName("services").item(0);		
+			NodeList servicesList = servicesNode.getChildNodes();
+			int length = servicesList.getLength();
+			
+			for (int i = 0; i < length; i++) {
+				Node s = servicesList.item(0);
+				servicesNode.removeChild(s);
+			}
+		}
+
+		Node servicesNode = microserviceEnvironmentData.getElementsByTagName("services").item(0);
+
+		for (Map.Entry<String, ArrayList<String>> entry : serviceData.entrySet()) {
+			Element service = doc.createElement("service");
+			Attr serviceSnapshotId = doc.createAttribute("snapshotId");
+			servicesNode.appendChild(service);
+			serviceSnapshotId.setValue(entry.getKey());
+			service.setAttributeNode(serviceSnapshotId);
+
+			ArrayList<String> instances = entry.getValue();
+
+			for (String instance : instances) {
+				Element instanceElement = doc.createElement("instance");
+				Attr instanceSnapshotId = doc.createAttribute("snapshotId");
+				service.appendChild(instanceElement);
+				instanceSnapshotId.setValue(instance);
+				instanceElement.setAttributeNode(instanceSnapshotId);
+
+			}
+
+		}
+
+		// write the content into xml file
+		TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		Transformer transformer = transformerFactory.newTransformer();
+		DOMSource source = new DOMSource(doc);
+		StreamResult result = new StreamResult(new File(XMLfilePath));
+		transformer.transform(source, result);
+		}catch(Exception exc) {
+			
+		}
 	}
 
+	/**
+	 * Check for Application-specific changes, such as instances or services
+	 * @throws Exception
+	 */
 	public void checkForApplicationChanges() throws Exception {
-
+		logger.info("Checking for application changes");
 		boolean changeOccured = false;
 
 		String xmlFilePath = this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().getPath()
 				.toString() + "/MicorserviceEnvironmentData.xml".toString();
-		
-		writeApplicationDataIntoXML(xmlFilePath);
 
-	}
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document document = dBuilder.parse(new File(xmlFilePath));
+		HashMap<String, ArrayList<String>> serviceData = getServices(getApplicationView());
+		
+
+		NodeList serviceNodes = document.getElementsByTagName("service");
+		
+		// Check if number of previous services (XML file) and current services (REST
+		// call) is the same
+		if (serviceNodes.getLength() == serviceData.size()) {
+			
+			for (int i = 0; i < serviceNodes.getLength(); i++) {
+				boolean serviceChange = true;
+				Element service = (Element) serviceNodes.item(i);
+				String serviceSnapshotId = service.getAttribute("snapshotId");
+				for (Map.Entry<String, ArrayList<String>> serviceEntry : serviceData.entrySet()) {						
+					if (serviceEntry.getKey().equals(serviceSnapshotId)) {
+						serviceChange = false;
+						ArrayList<String> instances = serviceEntry.getValue();
+						NodeList instanceNodes = service.getChildNodes();
+						if (instanceNodes.getLength() == instances.size()) {
+							for (int index = 0; index < instanceNodes.getLength(); index++) {
+								Element instance = (Element) instanceNodes.item(index);
+								if (instances.contains(instance.getAttribute("snapshotId"))) {
+									serviceChange = false;
+									break;
+								}else{
+									serviceChange = true;
+								}
+							}
+						} else {
+							serviceChange = true;
+						}
+						if (serviceChange) {
+							break;
+						}
+					}
+				}
+				if (serviceChange) {
+					changeOccured = true;
+					break;
+				}
+			}
+		} else {
+			changeOccured = true;
+		}
+
+		if (changeOccured) {
+			logger.info("Application change occured");
+			writeApplicationDataIntoXML(xmlFilePath, serviceData);
+		}	
+	}	
 }
