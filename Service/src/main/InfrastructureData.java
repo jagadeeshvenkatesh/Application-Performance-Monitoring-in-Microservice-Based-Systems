@@ -1,3 +1,4 @@
+package main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class InfrastructureData {
 
 		// Add authorization with API token to request header
 		con.setRequestMethod("GET");
-		con.setRequestProperty("authorization", "apiToken hlhYqfPTeLFXpEo0");
+		con.setRequestProperty("authorization", "apiToken XGWkxMrdgr00Tc2s");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -82,7 +83,7 @@ public class InfrastructureData {
 
 		// Add authorization with API token to request header
 		connection.setRequestMethod("GET");
-		connection.setRequestProperty("authorization", "apiToken hlhYqfPTeLFXpEo0");
+		connection.setRequestProperty("authorization", "apiToken XGWkxMrdgr00Tc2s");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;

@@ -1,3 +1,4 @@
+package main;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,6 +10,9 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.db.influxdb.Configuration;
 import com.db.influxdb.DataWriter;
 import com.google.gson.JsonArray;
@@ -23,7 +27,7 @@ import com.google.gson.JsonParser;
  *
  */
 public class Metrics {
-	
+	private static Logger logger = LoggerFactory.getLogger(Metrics.class);
     private  DatabaseAccess influxDb_Access = new DatabaseAccess();
     public static String currentTime;
 
@@ -31,6 +35,8 @@ public class Metrics {
 	public void getCPU_Used_Metrics(ArrayList<String> hostlist) throws Exception {
 
 		for (String host : hostlist) {
+			
+			logger.info(currentTime);
 
 			// Define Instana REST call and establish a connection
 			URL url = new URL("https://audi-audi.instana.io/api/metric?metric=cpu.used&time=" + currentTime
@@ -57,6 +63,7 @@ public class Metrics {
 			JSONObject jsonObject = (JSONObject) object;
 
 			double value = (double) jsonObject.get("value");
+			System.out.println(value);
 
 			influxDb_Access.writeDataPointIntoInfluxDB("host_metrics", "host", host, "cpu_used", value);
 		}
@@ -199,7 +206,7 @@ public class Metrics {
 
 		// Add authorization with API token to request header
 		connection.setRequestMethod("GET");
-		connection.setRequestProperty("authorization", "apiToken hlhYqfPTeLFXpEo0");
+		connection.setRequestProperty("authorization", "apiToken XGWkxMrdgr00Tc2s");
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 		String inputLine;
@@ -394,10 +401,13 @@ public class Metrics {
 
 			JsonObject event = array.get(i).getAsJsonObject();
 
-			String problem = event.get("problem").toString();
-			String severity = event.get("severity").toString();
-			String fixSuggestion = event.get("fixSuggestion").toString();
+			String problem = event.get("problem").getAsString();
+			String severity = event.get("severity").getAsString();
+			String fixSuggestion = event.get("fixSuggestion").getAsString();
 			fixSuggestion = fixSuggestion.replaceAll(" ", "_");
+			problem = problem.replaceAll(" ", "_");
+			problem = problem.replaceAll("%", "Percent");
+			problem = problem.replaceAll("/", "");
 
 			if (severity.equals("-1")) {
 				severity = "Change";
@@ -407,7 +417,7 @@ public class Metrics {
 				severity = "Incident";
 			}
 
-			Configuration configuration = new Configuration("localhost", "8086", "root", "root", "infrastructure");
+			Configuration configuration = new Configuration("localhost", "8086", "root", "root", "microserviceMonitoringDB");
 			DataWriter writer = new DataWriter(configuration);
 			writer.setMeasurement("events");
 
