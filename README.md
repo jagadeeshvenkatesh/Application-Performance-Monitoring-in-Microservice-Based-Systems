@@ -1,6 +1,6 @@
 This repository contains supplemental material for the monitoring concept of the Bachelor´s Thesis
 
-**Application Performance Monitoring in Microservice-Based Systems**
+***Application Performance Monitoring in Microservice-Based Systems***
 
 Therefore, the repository is structured as follows:
 
