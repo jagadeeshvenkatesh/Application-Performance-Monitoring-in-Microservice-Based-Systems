@@ -66,13 +66,18 @@ public class Service {
 			instanaInfrastructureData.checkForInfrastructureChanges();
 			ApplicationData instanaApplicationData = new ApplicationData();
 			instanaApplicationData.checkForApplicationChanges();
+			
+			DashboardAccess dashboardAccess = new DashboardAccess();
+			
 
+			System.out.println(dashboardAccess.getDashboard("Infrastructure-Dashboard"));
+			
 			logger.info("start processing metrics");
 			// pull metrics from Instana and store into InfluxDB
-			Metrics instanaMetrics = new Metrics();
-			instanaMetrics.getCPU_Used_Metrics(hostlist);
-			instanaMetrics.getMemory_Used_Metrics(hostlist);
-			instanaMetrics.getLoad_Metrics(hostlist);
+//			Metrics instanaMetrics = new Metrics();
+//			instanaMetrics.getCPU_Used_Metrics(hostlist);
+//			instanaMetrics.getMemory_Used_Metrics(hostlist);
+//			instanaMetrics.getLoad_Metrics(hostlist);
 //			instanaMetrics.getContainer_CPU_Metrics("R6x_nuhhLZq1wrr9X7aVH1N0nCs", k8s_vs_3_novalocal_Containerlist);
 //			instanaMetrics.getContainer_Memory_Metrics("R6x_nuhhLZq1wrr9X7aVH1N0nCs", k8s_vs_3_novalocal_Containerlist);
 //			instanaMetrics.getContainer_IO_Metrics("R6x_nuhhLZq1wrr9X7aVH1N0nCs", k8s_vs_3_novalocal_Containerlist);
