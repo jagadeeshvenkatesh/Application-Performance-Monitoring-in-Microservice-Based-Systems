@@ -7,4 +7,5 @@ Therefore, the repository is structured as follows:
 - **Abstract-en.md** (abstract of the thesis in english)
 - **Service** (implemented service to process data from the Instana REST API and store it into an InfluxDB database)
 - **Dashboards** (Grafana dashboards to visualize the metrics stored within the InfluxDB database)
+- **UML Diagrams** (UML diagrams of the monitoring concept and the implemented service)
 
