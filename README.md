@@ -10,5 +10,5 @@ Therefore, the repository is structured as follows:
 - **UML Diagrams** (UML diagrams of the monitoring concept and the implemented service)
 
 
-The thesis is publicly available at https://elib.uni-stuttgart.de/handle/11682/9844?mode=full.
+The thesis is publicly available at http://dx.doi.org/10.18419/opus-9827.
 
