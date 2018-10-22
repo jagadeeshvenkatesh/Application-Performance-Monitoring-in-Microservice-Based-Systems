@@ -9,3 +9,6 @@ Therefore, the repository is structured as follows:
 - **Dashboards** (Grafana dashboards to visualize the metrics stored within the InfluxDB database)
 - **UML Diagrams** (UML diagrams of the monitoring concept and the implemented service)
 
+
+The thesis is publicly available at https://elib.uni-stuttgart.de/handle/11682/9844?mode=full.
+
